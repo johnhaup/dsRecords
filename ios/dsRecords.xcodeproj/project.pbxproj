@@ -145,7 +145,6 @@
 				F79156B314E0673A0376765D /* Pods-dsRecords-dsRecordsTests.debug.xcconfig */,
 				B546FFD7E8BB5610F64CB083 /* Pods-dsRecords-dsRecordsTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

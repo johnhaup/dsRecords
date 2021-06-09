@@ -1,4 +1,4 @@
-package com.dsrecords;
+package com.dipshitrecords.mobile;
 
 import com.facebook.react.ReactActivity;
 
