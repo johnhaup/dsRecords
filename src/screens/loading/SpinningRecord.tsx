@@ -34,7 +34,7 @@ export const SpinningRecord = () => {
 
   return (
     <View style={styles.container}>
-      <Animated.View style={animatedStyles}>
+      <Animated.View style={animatedStyles} testID={'animated-view'}>
         <Record />
       </Animated.View>
     </View>
