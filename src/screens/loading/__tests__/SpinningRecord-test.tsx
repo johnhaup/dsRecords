@@ -5,11 +5,15 @@ import {
   advanceAnimationByTime,
   withReanimatedTimer,
 } from 'react-native-reanimated/src/reanimated2/jestUtils';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 import { SpinningRecord } from '../SpinningRecord';
 
 afterEach(cleanup);
+
+it('Matches snapshot', () => {
+  jest.useFakeTimers();
+  const snap = render(<SpinningRecord />).toJSON();
+  expect(snap).toMatchSnapshot();
+});
 
 it('Spins record 360 deg every 2 seconds with linear easing', () => {
   withReanimatedTimer(async () => {
@@ -21,10 +25,4 @@ it('Spins record 360 deg every 2 seconds with linear easing', () => {
     advanceAnimationByTime(1000);
     expect(view.props.style.transform[0].rotate).toBe('360deg');
   });
-});
-
-it('Matches snapshot', () => {
-  jest.useFakeTimers();
-  const snap = renderer.create(<SpinningRecord />);
-  expect(snap).toMatchSnapshot();
 });
