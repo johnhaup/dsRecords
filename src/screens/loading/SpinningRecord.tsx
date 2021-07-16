@@ -9,10 +9,19 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { Record } from '../../components/svgs/Record';
+import { LaunchScreens, NavigationProps } from '../../navigation/types';
 import { colors } from '../../styles';
 
-export const SpinningRecord = () => {
+export const SpinningRecord = ({
+  navigation,
+}: NavigationProps<LaunchScreens.SPINNING_RECORD>) => {
   const spin = useSharedValue(0);
+
+  const mockLoading = useCallback(() => {
+    setTimeout(() => {
+      navigation.navigate(LaunchScreens.TAB_NAVIGATOR);
+    }, 1000);
+  }, [navigation]);
 
   const startSpinning = useCallback(() => {
     spin.value = withRepeat(
@@ -23,8 +32,9 @@ export const SpinningRecord = () => {
 
   useEffect(() => {
     startSpinning();
+    mockLoading();
     RNBootSplash.hide({ fade: true });
-  }, [startSpinning]);
+  }, [startSpinning, mockLoading]);
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
