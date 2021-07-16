@@ -1,8 +1,14 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { SpinningRecord } from './src/screens/loading/SpinningRecord';
+import { RootNavigator } from './src/navigation/RootNavigator';
 
 const App = () => {
-  return <SpinningRecord />;
+  return (
+    <NavigationContainer>
+      <RootNavigator />
+      {/* <SpinningRecord /> */}
+    </NavigationContainer>
+  );
 };
 
 export default App;
