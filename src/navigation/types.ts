@@ -15,3 +15,16 @@ export type NavigationProps<T extends keyof ScreenParams> = {
   navigation: StackNavigationProp<ScreenParams, T>;
   route: RouteProp<ScreenParams, T>;
 };
+
+export enum BounceStack {
+  BOUNCE = 'BOUNCE',
+}
+
+export type BounceStackScreenParams = {
+  [BounceStack.BOUNCE]: undefined;
+};
+
+export type BounceStackProps<T extends keyof BounceStackScreenParams> = {
+  navigation: StackNavigationProp<BounceStackScreenParams, T>;
+  route: RouteProp<BounceStackScreenParams, T>;
+};

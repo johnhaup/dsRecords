@@ -1,11 +1,17 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
+import { colors } from '../../styles';
 
 interface Props extends SvgProps {
   size?: number;
+  labelColor?: string;
 }
 
-export const Record = ({ size = 80, ...rest }: Props) => {
+export const Record = ({
+  size = 80,
+  labelColor = colors.chiGong,
+  ...rest
+}: Props) => {
   return (
     <Svg height={size} width={size} viewBox="0 0 496 496" {...rest}>
       <Path
@@ -14,7 +20,7 @@ export const Record = ({ size = 80, ...rest }: Props) => {
       />
       <Path
         d="M248 136c-61.855 0-112 50.145-112 112s50.145 112 112 112 112-50.145 112-112-50.145-112-112-112zm0 128c-8.836 0-16-7.164-16-16s7.164-16 16-16 16 7.164 16 16-7.164 16-16 16zm0 0"
-        fill="#d80027"
+        fill={labelColor}
       />
       <Path
         d="M264 248c0 8.836-7.164 16-16 16s-16-7.164-16-16 7.164-16 16-16 16 7.164 16 16zm0 0"
