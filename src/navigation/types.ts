@@ -28,3 +28,16 @@ export type BounceStackProps<T extends keyof BounceStackScreenParams> = {
   navigation: StackNavigationProp<BounceStackScreenParams, T>;
   route: RouteProp<BounceStackScreenParams, T>;
 };
+
+export enum SpinStack {
+  SPIN = 'SPIN',
+}
+
+export type SpinStackScreenParams = {
+  [SpinStack.SPIN]: undefined;
+};
+
+export type SpinStackProps<T extends keyof SpinStackScreenParams> = {
+  navigation: StackNavigationProp<SpinStackScreenParams, T>;
+  route: RouteProp<SpinStackScreenParams, T>;
+};
