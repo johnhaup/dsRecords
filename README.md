@@ -1,11 +1,9 @@
 # Dipshit Records
 
-### Run the app
+#### Personal Playground React Native App
 
-```bash
-yarn
-cd ios && pod install
-react-native run-ios
-or
-react-native run-android
-```
+- [Reanimated 2](https://docs.swmansion.com/react-native-reanimated/)
+- [Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/)
+- [React Navigation 5](https://reactnavigation.org/)
+- [React Native Audio Toolkit](https://github.com/react-native-audio-toolkit/react-native-audio-toolkit)
+- React Test Renderer @test-library/react-native
