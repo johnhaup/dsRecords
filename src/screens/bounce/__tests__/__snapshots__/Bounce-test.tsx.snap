@@ -2,18 +2,18 @@
 
 exports[`Matches snapshot 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
-      "alignItems": "center",
-      "backgroundColor": "#0984e3",
       "flex": 1,
-      "justifyContent": "center",
     }
   }
 >
   <View
+    collapsable={false}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
     style={[MockFunction]}
-    testID="animated-view"
   >
     <RNSVGSvgView
       align="xMidYMid"
@@ -53,7 +53,7 @@ exports[`Matches snapshot 1`] = `
         />
         <RNSVGPath
           d="M248 136c-61.855 0-112 50.145-112 112s50.145 112 112 112 112-50.145 112-112-50.145-112-112-112zm0 128c-8.836 0-16-7.164-16-16s7.164-16 16-16 16 7.164 16 16-7.164 16-16 16zm0 0"
-          fill={4292227121}
+          fill={4278243017}
           propList={
             Array [
               "fill",

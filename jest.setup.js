@@ -3,7 +3,7 @@ jest.mock('react-native-bootsplash', () => ({
 }));
 
 // Reanimated 2
-// require('react-native-reanimated/lib/reanimated2/jestUtils').setUpTests(); <-- Has no effect on tests
+require('react-native-reanimated/src/reanimated2/jestUtils').setUpTests();
 // https://github.com/software-mansion/react-native-reanimated/issues/1941#issuecomment-826995101
 // @ts-ignore
 global.__reanimatedWorkletInit = jest.fn();
@@ -19,9 +19,25 @@ jest.mock('react-native-reanimated', () => {
     withRepeat: jest.fn,
     withSequence: jest.fn,
     useAnimatedProps: jest.fn,
+    useDerivedValue: jest.fn,
+    useAnimatedReaction: jest.fn,
+    useAnimatedGestureHandler: jest.fn,
     Easing: {
       linear: jest.fn,
       elastic: jest.fn,
     },
   };
 });
+
+jest.mock('@react-native-community/audio-toolkit', () => ({
+  Player: () => ({
+    prepare: jest.fn,
+    play: jest.fn,
+    stop: jest.fn,
+    pause: jest.fn,
+    speed: 1,
+  }),
+}));
+
+// https://stackoverflow.com/a/59593847
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
