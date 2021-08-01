@@ -1,10 +1,11 @@
-import { cleanup, render } from '@testing-library/react-native/pure';
+import { cleanup, render } from '@testing-library/react-native';
 import React from 'react';
 import 'react-native';
 import {
   advanceAnimationByTime,
   withReanimatedTimer,
 } from 'react-native-reanimated/src/reanimated2/jestUtils';
+import { act } from 'react-test-renderer';
 import { LaunchScreens, NavigationProps } from '../../../navigation/types';
 import { SpinningRecord } from '../SpinningRecord';
 
@@ -12,9 +13,10 @@ afterEach(cleanup);
 
 const mockNavProps = {} as NavigationProps<LaunchScreens.SPINNING_RECORD>;
 
-it('Matches snapshot', () => {
+it('Matches snapshot', async () => {
   jest.useFakeTimers();
   const snap = render(<SpinningRecord {...mockNavProps} />).toJSON();
+  await act(async () => {});
   expect(snap).toMatchSnapshot();
 });
 
