@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.dipshitrecords.mobile",
+    package = "com.haup.dsrecords",
 )
 
 android_resource(
     name = "res",
-    package = "com.dipshitrecords.mobile",
+    package = "com.haup.dsrecords",
     res = "src/main/res",
 )
 
