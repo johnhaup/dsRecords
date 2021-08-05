@@ -1,4 +1,4 @@
-package com.dipshitrecords.mobile;
+package com.haup.dsrecords;
 
 import android.os.Bundle;
 
