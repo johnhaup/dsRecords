@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   LayoutChangeEvent,
   LayoutRectangle,
@@ -8,6 +8,8 @@ import {
 import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
+  TapGestureHandler,
+  TapGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
 import Animated, {
   runOnJS,
@@ -26,6 +28,8 @@ import { colors } from '../../styles';
 const RECORD_SIZE = 80;
 
 export const Bounce = () => {
+  const tapHandlerRef = useRef();
+  const panHandlerRef = useRef();
   const { play, pause } = useAudioPlayer();
   const [containerLayoutRectangle, setContainerLayoutRectangle] =
     useState<LayoutRectangle | null>(null);
@@ -39,6 +43,7 @@ export const Bounce = () => {
   const activeVelocityY = useSharedValue(0);
   const decayVelocityX = useSharedValue(0);
   const decayVelocityY = useSharedValue(0);
+  const tapActive = useSharedValue(false);
 
   function playFromUI() {
     'worklet';
@@ -62,7 +67,7 @@ export const Bounce = () => {
 
   useAnimatedReaction(
     () => {
-      return isMoving.value;
+      return isMoving.value || tapActive.value;
     },
     (isActive, wasActive) => {
       if (isActive && !wasActive) {
@@ -72,10 +77,20 @@ export const Bounce = () => {
         pauseFromUI();
       }
     },
-    [isMoving],
+    [isMoving, tapActive],
   );
 
-  const onGestureEvent = useAnimatedGestureHandler<
+  const onTapGestureEvent =
+    useAnimatedGestureHandler<TapGestureHandlerGestureEvent>({
+      onStart: () => {
+        tapActive.value = true;
+      },
+      onEnd: () => {
+        tapActive.value = false;
+      },
+    });
+
+  const onPanGestureEvent = useAnimatedGestureHandler<
     // Type of event Gesture Handler is emitting
     PanGestureHandlerGestureEvent,
     // User-defined context available to methods in hook
@@ -141,11 +156,21 @@ export const Bounce = () => {
 
   return (
     <View style={styles.container} onLayout={onContainerLayout}>
-      <PanGestureHandler {...{ onGestureEvent }}>
-        <Animated.View {...{ style }}>
-          <Record size={RECORD_SIZE} labelColor={colors.robinsEggBlue} />
+      <TapGestureHandler
+        ref={tapHandlerRef}
+        simultaneousHandlers={panHandlerRef}
+        onGestureEvent={onTapGestureEvent}>
+        <Animated.View>
+          <PanGestureHandler
+            ref={panHandlerRef}
+            simultaneousHandlers={tapHandlerRef}
+            onGestureEvent={onPanGestureEvent}>
+            <Animated.View {...{ style }}>
+              <Record size={RECORD_SIZE} labelColor={colors.robinsEggBlue} />
+            </Animated.View>
+          </PanGestureHandler>
         </Animated.View>
-      </PanGestureHandler>
+      </TapGestureHandler>
     </View>
   );
 };
