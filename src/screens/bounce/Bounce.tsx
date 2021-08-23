@@ -3,6 +3,7 @@ import {
   LayoutChangeEvent,
   LayoutRectangle,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import {
@@ -19,8 +20,10 @@ import Animated, {
   useDerivedValue,
   useSharedValue,
   withDecay,
+  withSpring,
 } from 'react-native-reanimated';
 import { clamp, withBouncing } from 'react-native-redash';
+import { AbsoluteContainer } from '../../components/primitives/AbsoluteContainer';
 import { Record } from '../../components/svgs/Record';
 import { useAudioPlayer } from '../../services/hooks/useAudioPlayer';
 import { colors } from '../../styles';
@@ -65,10 +68,17 @@ export const Bounce = () => {
     );
   }, [activeVelocityX, decayVelocityX, activeVelocityY, decayVelocityY]);
 
+  const activeRecord = useDerivedValue(() => {
+    return isMoving.value || tapActive.value;
+  }, [isMoving, tapActive]);
+
+  const attributionOpacity = useDerivedValue(() => {
+    const toValue = activeRecord.value ? 1 : 0;
+    return withSpring(toValue);
+  }, [activeRecord]);
+
   useAnimatedReaction(
-    () => {
-      return isMoving.value || tapActive.value;
-    },
+    () => activeRecord,
     (isActive, wasActive) => {
       if (isActive && !wasActive) {
         playFromUI();
@@ -77,7 +87,7 @@ export const Bounce = () => {
         pauseFromUI();
       }
     },
-    [isMoving, tapActive],
+    [activeRecord],
   );
 
   const onTapGestureEvent =
@@ -91,9 +101,7 @@ export const Bounce = () => {
     });
 
   const onPanGestureEvent = useAnimatedGestureHandler<
-    // Type of event Gesture Handler is emitting
     PanGestureHandlerGestureEvent,
-    // User-defined context available to methods in hook
     {
       offsetX: number;
       offsetY: number;
@@ -139,12 +147,18 @@ export const Bounce = () => {
     },
   });
 
-  const style = useAnimatedStyle(() => {
+  const animatedRecordStyle = useAnimatedStyle(() => {
     return {
       transform: [
         { translateX: translateX.value },
         { translateY: translateY.value },
       ],
+    };
+  });
+
+  const animatedAttributionStyle = useAnimatedStyle(() => {
+    return {
+      opacity: attributionOpacity.value,
     };
   });
 
@@ -165,12 +179,27 @@ export const Bounce = () => {
             ref={panHandlerRef}
             simultaneousHandlers={tapHandlerRef}
             onGestureEvent={onPanGestureEvent}>
-            <Animated.View {...{ style }}>
+            <Animated.View style={animatedRecordStyle}>
               <Record size={RECORD_SIZE} labelColor={colors.robinsEggBlue} />
             </Animated.View>
           </PanGestureHandler>
         </Animated.View>
       </TapGestureHandler>
+      <AbsoluteContainer
+        bottom
+        left
+        right
+        style={{
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+        }}
+        pointerEvents={'none'}>
+        <Animated.View style={animatedAttributionStyle}>
+          <Text style={styles.attribution}>
+            Royalty Free Music from Bensound
+          </Text>
+        </Animated.View>
+      </AbsoluteContainer>
     </View>
   );
 };
@@ -178,5 +207,8 @@ export const Bounce = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  attribution: {
+    paddingBottom: 10,
   },
 });
