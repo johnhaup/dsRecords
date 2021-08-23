@@ -78,7 +78,7 @@ export const Bounce = () => {
   }, [activeRecord]);
 
   useAnimatedReaction(
-    () => activeRecord,
+    () => activeRecord.value,
     (isActive, wasActive) => {
       if (isActive && !wasActive) {
         playFromUI();
