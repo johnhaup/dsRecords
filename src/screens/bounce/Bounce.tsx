@@ -210,5 +210,8 @@ const styles = StyleSheet.create({
   },
   attribution: {
     paddingBottom: 10,
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 14,
+    lineHeight: 18,
   },
 });
