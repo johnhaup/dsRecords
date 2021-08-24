@@ -125,6 +125,9 @@ exports[`Matches snapshot 1`] = `
       <Text
         style={
           Object {
+            "fontFamily": "Montserrat-Regular",
+            "fontSize": 14,
+            "lineHeight": 18,
             "paddingBottom": 10,
           }
         }
