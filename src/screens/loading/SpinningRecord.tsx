@@ -1,6 +1,7 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 import Animated, {
   Easing,
@@ -21,7 +22,7 @@ export const SpinningRecord = ({
   const mockLoading = useCallback(() => {
     setTimeout(() => {
       navigation.navigate('Main');
-    }, 1000);
+    }, 2500);
   }, [navigation]);
 
   const startSpinning = useCallback(() => {
@@ -36,6 +37,14 @@ export const SpinningRecord = ({
     mockLoading();
     RNBootSplash.hide({ fade: true });
   }, [startSpinning, mockLoading]);
+
+  useFocusEffect(
+    useCallback(() => {
+      StatusBar.setBarStyle('light-content');
+
+      return () => StatusBar.setBarStyle('dark-content');
+    }, []),
+  );
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
