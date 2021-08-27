@@ -5,7 +5,6 @@ import { Record } from '../components/svgs/Record';
 import { Bounce } from '../screens/bounce/Bounce';
 import { Spin } from '../screens/spin/Spin';
 import { colors } from '../styles';
-import { BounceStack, SpinStack } from './types';
 
 const BottomTabNavigator = createBottomTabNavigator();
 
@@ -18,19 +17,23 @@ const renderTabBarIcon = ({ focused }: { focused: boolean }) => {
 export const TabNavigator = () => {
   return (
     <BottomTabNavigator.Navigator
-      tabBarOptions={{ showLabel: false, style: styles.tabBar }}>
+      screenOptions={{ tabBarStyle: styles.tabBar }}>
       <BottomTabNavigator.Screen
-        name={BounceStack.BOUNCE}
+        name={'Bounce'}
         component={Bounce}
         options={() => ({
           tabBarIcon: renderTabBarIcon,
+          tabBarShowLabel: false,
+          headerShown: false,
         })}
       />
       <BottomTabNavigator.Screen
-        name={SpinStack.SPIN}
+        name={'Spin'}
         component={Spin}
         options={() => ({
           tabBarIcon: renderTabBarIcon,
+          tabBarShowLabel: false,
+          headerShown: false,
         })}
       />
     </BottomTabNavigator.Navigator>

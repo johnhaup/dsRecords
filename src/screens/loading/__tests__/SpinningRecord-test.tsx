@@ -1,3 +1,4 @@
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { cleanup, render } from '@testing-library/react-native';
 import React from 'react';
 import 'react-native';
@@ -6,12 +7,15 @@ import {
   withReanimatedTimer,
 } from 'react-native-reanimated/src/reanimated2/jestUtils';
 import { act } from 'react-test-renderer';
-import { LaunchScreens, NavigationProps } from '../../../navigation/types';
+import { RootNavigatorParamList } from '../../../navigation/types';
 import { SpinningRecord } from '../SpinningRecord';
 
 afterEach(cleanup);
 
-const mockNavProps = {} as NavigationProps<LaunchScreens.SPINNING_RECORD>;
+const mockNavProps = {} as BottomTabScreenProps<
+  RootNavigatorParamList,
+  'SpinningRecord'
+>;
 
 it('Matches snapshot', async () => {
   jest.useFakeTimers();
