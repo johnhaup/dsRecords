@@ -41,3 +41,11 @@ jest.mock('@react-native-community/audio-toolkit', () => ({
 
 // https://stackoverflow.com/a/59593847
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
+jest.mock('@react-navigation/native', () => {
+  return {
+    // @ts-ignore
+    ...jest.requireActual('@react-navigation/native'),
+    useFocusEffect: jest.fn,
+  };
+});
