@@ -2,27 +2,24 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { SpinningRecord } from '../screens/loading/SpinningRecord';
 import { TabNavigator } from './TabNavigator';
-import { LaunchScreens } from './types';
+import { RootNavigatorParamList } from './types';
 
-const RootStack = createStackNavigator();
+const RootStack = createStackNavigator<RootNavigatorParamList>();
 
 export const RootNavigator = () => {
   return (
     <RootStack.Navigator
-      mode="modal"
-      headerMode={'none'}
       screenOptions={{ animationEnabled: false }}
-      initialRouteName={LaunchScreens.SPINNING_RECORD}>
+      initialRouteName={'SpinningRecord'}>
       <RootStack.Screen
-        name={LaunchScreens.TAB_NAVIGATOR}
+        name={'Main'}
         component={TabNavigator}
-        options={{
-          headerShown: false,
-        }}
+        options={{ headerShown: false }}
       />
       <RootStack.Screen
-        name={LaunchScreens.SPINNING_RECORD}
+        name={'SpinningRecord'}
         component={SpinningRecord}
+        options={{ presentation: 'modal', headerShown: false }}
       />
     </RootStack.Navigator>
   );

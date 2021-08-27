@@ -1,3 +1,4 @@
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import React, { useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
@@ -9,17 +10,17 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { Record } from '../../components/svgs/Record';
-import { LaunchScreens, NavigationProps } from '../../navigation/types';
+import { RootNavigatorParamList } from '../../navigation/types';
 import { colors } from '../../styles';
 
 export const SpinningRecord = ({
   navigation,
-}: NavigationProps<LaunchScreens.SPINNING_RECORD>) => {
+}: BottomTabScreenProps<RootNavigatorParamList, 'SpinningRecord'>) => {
   const spin = useSharedValue(0);
 
   const mockLoading = useCallback(() => {
     setTimeout(() => {
-      navigation.navigate(LaunchScreens.TAB_NAVIGATOR);
+      navigation.navigate('Main');
     }, 1000);
   }, [navigation]);
 
