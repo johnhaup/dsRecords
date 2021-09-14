@@ -19,7 +19,6 @@ import { useAudioPlayer } from '../../services/hooks/useAudioPlayer';
 import { colors } from '../../styles';
 
 const RECORD_SIZE = Dimensions.get('window').width - 40;
-const r = RECORD_SIZE / 2;
 const CENTER = { x: 0, y: 0 };
 
 export const Spin = () => {
@@ -61,13 +60,7 @@ export const Spin = () => {
   >({
     onStart: (_, ctx) => {
       ctx.offset = rotate.value;
-      // ctx.offset = polar2Canvas(
-      //   {
-      //     theta: theta.value,
-      //     radius: r,
-      //   },
-      //   CENTER,
-      // );
+      playSpeed.value = 1;
     },
     onActive: (event, ctx) => {
       const x = event.translationX;
@@ -79,14 +72,15 @@ export const Spin = () => {
       const newValue = thetaRotationValue + ctx.offset;
       rotate.value =
         newValue > 360 || newValue < -360 ? newValue % 360 : newValue;
-      console.log(ctx.offset, rotate.value);
+    },
+    onEnd: () => {
+      playSpeed.value = 0;
     },
   });
 
   const style = useAnimatedStyle(() => {
     return {
       transform: [{ rotate: `${rotate.value}deg` }],
-      // transform: [{ translateX: translation.x }, { translateY: translation.y }],
     };
   });
 
@@ -107,7 +101,6 @@ const styles = StyleSheet.create({
   handlerChild: {
     height: RECORD_SIZE,
     width: RECORD_SIZE,
-    borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
