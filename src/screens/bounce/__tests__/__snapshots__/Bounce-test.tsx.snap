@@ -19,6 +19,7 @@ exports[`Matches snapshot 1`] = `
       onGestureHandlerEvent={[Function]}
       onGestureHandlerStateChange={[Function]}
       style={[MockFunction]}
+      testID="@Bounce/Record"
     >
       <RNSVGSvgView
         align="xMidYMid"
@@ -121,6 +122,7 @@ exports[`Matches snapshot 1`] = `
   >
     <View
       style={[MockFunction]}
+      testID="@Bounce/AttributionText"
     >
       <Text
         style={

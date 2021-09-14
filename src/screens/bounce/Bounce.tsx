@@ -179,7 +179,9 @@ export const Bounce = () => {
             ref={panHandlerRef}
             simultaneousHandlers={tapHandlerRef}
             onGestureEvent={onPanGestureEvent}>
-            <Animated.View style={animatedRecordStyle}>
+            <Animated.View
+              style={animatedRecordStyle}
+              testID={'@Bounce/Record'}>
               <Record size={RECORD_SIZE} labelColor={colors.robinsEggBlue} />
             </Animated.View>
           </PanGestureHandler>
@@ -194,7 +196,9 @@ export const Bounce = () => {
           alignItems: 'center',
         }}
         pointerEvents={'none'}>
-        <Animated.View style={animatedAttributionStyle}>
+        <Animated.View
+          style={animatedAttributionStyle}
+          testID={'@Bounce/AttributionText'}>
           <Text style={styles.attribution}>
             Royalty Free Music from Bensound
           </Text>
