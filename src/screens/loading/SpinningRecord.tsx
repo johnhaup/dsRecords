@@ -53,7 +53,7 @@ export const SpinningRecord = ({
   });
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID={'@SpinningRecord/container'}>
       <Animated.View style={animatedStyles} testID={'animated-view'}>
         <Record />
       </Animated.View>

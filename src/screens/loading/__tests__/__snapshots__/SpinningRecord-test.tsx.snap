@@ -10,6 +10,7 @@ exports[`Matches snapshot 1`] = `
       "justifyContent": "center",
     }
   }
+  testID="@SpinningRecord/container"
 >
   <View
     style={[MockFunction]}

@@ -88,7 +88,7 @@ export const Spin = () => {
     <AbsoluteContainer center>
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View style={styles.handlerChild}>
-          <Animated.View style={style}>
+          <Animated.View testID={'@Spin/Record'} style={style}>
             <Record size={RECORD_SIZE} labelColor={colors.sourLemon} />
           </Animated.View>
         </Animated.View>

@@ -22,6 +22,7 @@ export const TabNavigator = () => {
         name={'Bounce'}
         component={Bounce}
         options={() => ({
+          tabBarTestID: '@TabBar/Bounce',
           tabBarIcon: renderTabBarIcon,
           tabBarShowLabel: false,
           headerShown: false,
@@ -31,6 +32,7 @@ export const TabNavigator = () => {
         name={'Spin'}
         component={Spin}
         options={() => ({
+          tabBarTestID: '@TabBar/Spin',
           tabBarIcon: renderTabBarIcon,
           tabBarShowLabel: false,
           headerShown: false,
