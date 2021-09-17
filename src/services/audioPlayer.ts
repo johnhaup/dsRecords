@@ -1,3 +1,6 @@
 import { Player } from '@react-native-community/audio-toolkit';
+import { Platform } from 'react-native';
 
-export const audioPlayer = new Player('bensound-punky.mp3');
+const mp3 = Platform.OS === 'ios' ? 'bensound-punky.mp3' : 'bensound_punky.mp3';
+
+export const audioPlayer = new Player(mp3);
