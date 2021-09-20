@@ -3,19 +3,20 @@ describe('Bounce', () => {
     await device.launchApp();
   });
 
-  it('should bounce record', async () => {
-    await waitFor(element(by.id('@Bounce/Record')))
+  it('should show play screen with bounce record on load', async () => {
+    await waitFor(element(by.id('@TabBar/Play')))
       .toBeVisible()
       .withTimeout(5000);
-    await element(by.id('@Bounce/Record')).swipe('down');
+    await expect(element(by.id('@Play/ScrollView'))).toBeVisible();
+    await expect(element(by.id('@Bounce/Record'))).toBeVisible();
   });
 
-  it('should bounce record again', async () => {
+  it('should bounce record', async () => {
     await element(by.id('@Bounce/Record')).longPressAndDrag(
-      5000,
-      NaN,
-      NaN,
-      element(by.id('@Bounce/AttributionText')),
+      500,
+      0.5,
+      0.5,
+      element(by.id('@Bounce/SwipeDestination')),
       0.5,
       0.5,
       'fast',

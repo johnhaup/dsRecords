@@ -23,10 +23,10 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { clamp, withBouncing } from 'react-native-redash';
-import { AbsoluteContainer } from '../../components/primitives/AbsoluteContainer';
-import { Record } from '../../components/svgs/Record';
 import { useAudioPlayer } from '../../services/hooks/useAudioPlayer';
 import { colors } from '../../styles';
+import { AbsoluteContainer } from '../primitives/AbsoluteContainer';
+import { Record } from '../svgs/Record';
 
 const RECORD_SIZE = 80;
 
@@ -204,6 +204,11 @@ export const Bounce = () => {
           </Text>
         </Animated.View>
       </AbsoluteContainer>
+      <View
+        style={styles.swipeDestination}
+        pointerEvents={'box-none'}
+        testID={'@Bounce/SwipeDestination'}
+      />
     </View>
   );
 };
@@ -217,5 +222,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Regular',
     fontSize: 14,
     lineHeight: 18,
+  },
+  swipeDestination: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    height: 10,
+    width: 10,
   },
 });

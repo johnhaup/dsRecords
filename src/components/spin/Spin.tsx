@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
@@ -13,10 +13,10 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import { canvas2Polar } from 'react-native-redash';
-import { AbsoluteContainer } from '../../components/primitives/AbsoluteContainer';
-import { Record } from '../../components/svgs/Record';
 import { useAudioPlayer } from '../../services/hooks/useAudioPlayer';
 import { colors } from '../../styles';
+import { AbsoluteContainer } from '../primitives/AbsoluteContainer';
+import { Record } from '../svgs/Record';
 
 const RECORD_SIZE = Dimensions.get('window').width - 40;
 const CENTER = { x: 0, y: 0 };
@@ -86,6 +86,11 @@ export const Spin = () => {
 
   return (
     <AbsoluteContainer center>
+      <View
+        style={styles.swipeDestination}
+        pointerEvents={'box-none'}
+        testID={'@Spin/SwipeDestination'}
+      />
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View style={styles.handlerChild}>
           <Animated.View testID={'@Spin/Record'} style={style}>
@@ -103,5 +108,12 @@ const styles = StyleSheet.create({
     width: RECORD_SIZE,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  swipeDestination: {
+    position: 'absolute',
+    top: 50,
+    left: 50,
+    height: 10,
+    width: 10,
   },
 });
