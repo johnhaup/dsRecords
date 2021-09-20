@@ -138,5 +138,18 @@ exports[`Matches snapshot 1`] = `
       </Text>
     </View>
   </View>
+  <View
+    pointerEvents="box-none"
+    style={
+      Object {
+        "bottom": 0,
+        "height": 10,
+        "left": 0,
+        "position": "absolute",
+        "width": 10,
+      }
+    }
+    testID="@Bounce/SwipeDestination"
+  />
 </View>
 `;

@@ -1,9 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Record } from '../components/svgs/Record';
-import { Bounce } from '../screens/bounce/Bounce';
-import { Spin } from '../screens/spin/Spin';
+import { Play } from '../screens/play/Play';
 import { colors } from '../styles';
 
 const BottomTabNavigator = createBottomTabNavigator();
@@ -19,20 +18,20 @@ export const TabNavigator = () => {
     <BottomTabNavigator.Navigator
       screenOptions={{ tabBarStyle: styles.tabBar }}>
       <BottomTabNavigator.Screen
-        name={'Bounce'}
-        component={Bounce}
+        name={'Play'}
+        component={Play}
         options={() => ({
-          tabBarTestID: '@TabBar/Bounce',
+          tabBarTestID: '@TabBar/Play',
           tabBarIcon: renderTabBarIcon,
           tabBarShowLabel: false,
           headerShown: false,
         })}
       />
       <BottomTabNavigator.Screen
-        name={'Spin'}
-        component={Spin}
+        name={'Song'}
+        component={View}
         options={() => ({
-          tabBarTestID: '@TabBar/Spin',
+          tabBarTestID: '@TabBar/Song',
           tabBarIcon: renderTabBarIcon,
           tabBarShowLabel: false,
           headerShown: false,
