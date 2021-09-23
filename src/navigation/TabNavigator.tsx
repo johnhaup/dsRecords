@@ -1,17 +1,11 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Record } from '../components/svgs/Record';
+import { RecordInSleeve } from '../components/svgs/RecordInSleeve';
+import { RecordPlayer } from '../components/svgs/RecordPlayer';
 import { Play } from '../screens/play/Play';
-import { colors } from '../styles';
 
 const BottomTabNavigator = createBottomTabNavigator();
-
-const renderTabBarIcon = ({ focused }: { focused: boolean }) => {
-  const color = focused ? colors.chiGong : colors.soothingBreeze;
-  const size = focused ? 40 : 36;
-  return <Record size={size} labelColor={color} />;
-};
 
 export const TabNavigator = () => {
   return (
@@ -22,7 +16,9 @@ export const TabNavigator = () => {
         component={Play}
         options={() => ({
           tabBarTestID: '@TabBar/Play',
-          tabBarIcon: renderTabBarIcon,
+          tabBarIcon: ({ focused }) => (
+            <RecordPlayer hideFillColors={!focused} size={focused ? 40 : 38} />
+          ),
           tabBarShowLabel: false,
           headerShown: false,
         })}
@@ -32,7 +28,12 @@ export const TabNavigator = () => {
         component={View}
         options={() => ({
           tabBarTestID: '@TabBar/Song',
-          tabBarIcon: renderTabBarIcon,
+          tabBarIcon: ({ focused }) => (
+            <RecordInSleeve
+              hideFillColors={!focused}
+              size={focused ? 60 : 56}
+            />
+          ),
           tabBarShowLabel: false,
           headerShown: false,
         })}
