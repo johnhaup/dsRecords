@@ -5,12 +5,10 @@ jest.mock('react-native-bootsplash', () => ({
 // Reanimated 2
 require('react-native-reanimated/src/reanimated2/jestUtils').setUpTests();
 // https://github.com/software-mansion/react-native-reanimated/issues/1941#issuecomment-826995101
-// @ts-ignore
 global.__reanimatedWorkletInit = jest.fn();
 
 jest.mock('react-native-reanimated', () => {
   return {
-    // @ts-ignore
     ...jest.requireActual('react-native-reanimated/mock'),
     useSharedValue: jest.fn,
     useAnimatedStyle: jest.fn,
@@ -44,8 +42,13 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
 jest.mock('@react-navigation/native', () => {
   return {
-    // @ts-ignore
     ...jest.requireActual('@react-navigation/native'),
     useFocusEffect: jest.fn,
   };
+});
+
+jest.mock('@react-native-firebase/firestore', () => {
+  return () => ({
+    collection: jest.fn,
+  });
 });
