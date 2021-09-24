@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "207921939340",
+    "project_id": "dsrecords-621fb",
+    "storage_bucket": "dsrecords-621fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207921939340:android:fccd994447fde658530ca9",
+        "android_client_info": {
+          "package_name": "com.haup.dsrecords"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207921939340-vra0dk2nk9gppgna0b2rlmnkjos63bg6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI65oyAVPJt1QrTHAXTDgPJ9BC7VHzh6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207921939340-vra0dk2nk9gppgna0b2rlmnkjos63bg6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
