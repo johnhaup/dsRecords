@@ -1,9 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { RecordInSleeve } from '../components/svgs/RecordInSleeve';
 import { RecordPlayer } from '../components/svgs/RecordPlayer';
 import { Play } from '../screens/play/Play';
+import { Songs } from '../screens/songs/Songs';
 
 const BottomTabNavigator = createBottomTabNavigator();
 
@@ -24,10 +25,10 @@ export const TabNavigator = () => {
         })}
       />
       <BottomTabNavigator.Screen
-        name={'Song'}
-        component={View}
+        name={'Songs'}
+        component={Songs}
         options={() => ({
-          tabBarTestID: '@TabBar/Song',
+          tabBarTestID: '@TabBar/Songs',
           tabBarIcon: ({ focused }) => (
             <RecordInSleeve
               hideFillColors={!focused}

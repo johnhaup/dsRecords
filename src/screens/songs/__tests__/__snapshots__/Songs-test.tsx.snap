@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshot 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    horizontal={true}
+    pagingEnabled={true}
+    scrollEventThrottle={0.0001}
+    style={Object {}}
+    testID="@Songs/ScrollView"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "width": 750,
+          }
+        }
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;
