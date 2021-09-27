@@ -52,3 +52,19 @@ jest.mock('@react-native-firebase/firestore', () => {
     collection: jest.fn,
   });
 });
+
+jest.mock('@react-native-firebase/auth', () => () => ({
+  currentUser: null,
+  onAuthStateChanged: jest.fn,
+  signInWithCredential: jest.fn,
+  GoogleAuthProvider: {
+    credential: jest.fn,
+  },
+}));
+
+jest.mock('@react-native-google-signin/google-signin', () => ({
+  GoogleSignin: {
+    configure: jest.fn,
+    signIn: () => ({ idToken: '123' }),
+  },
+}));
