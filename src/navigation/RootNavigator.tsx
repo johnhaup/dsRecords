@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { SpinningRecord } from '../screens/loading/SpinningRecord';
+import { Login } from '../screens/login/Login';
 import { TabNavigator } from './TabNavigator';
 import { RootNavigatorParamList } from './types';
 
@@ -19,6 +20,11 @@ export const RootNavigator = () => {
       <RootStack.Screen
         name={'SpinningRecord'}
         component={SpinningRecord}
+        options={{ presentation: 'modal', headerShown: false }}
+      />
+      <RootStack.Screen
+        name={'Login'}
+        component={Login}
         options={{ presentation: 'modal', headerShown: false }}
       />
     </RootStack.Navigator>

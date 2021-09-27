@@ -1,5 +1,6 @@
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import auth from '@react-native-firebase/auth';
 import { useFocusEffect } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 import React, { useCallback, useEffect } from 'react';
 import { StatusBar, StyleSheet, View } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
@@ -16,13 +17,14 @@ import { colors } from '../../styles';
 
 export const SpinningRecord = ({
   navigation,
-}: BottomTabScreenProps<RootNavigatorParamList, 'SpinningRecord'>) => {
+}: StackScreenProps<RootNavigatorParamList, 'SpinningRecord'>) => {
   const spin = useSharedValue(0);
 
-  const mockLoading = useCallback(() => {
+  const checkUserWithLoadingDelay = useCallback(async () => {
+    const nextScreen = auth().currentUser ? 'Main' : 'Login';
     setTimeout(() => {
-      navigation.navigate('Main');
-    }, 2500);
+      navigation.navigate(nextScreen);
+    }, 1500);
   }, [navigation]);
 
   const startSpinning = useCallback(() => {
@@ -34,9 +36,9 @@ export const SpinningRecord = ({
 
   useEffect(() => {
     startSpinning();
-    mockLoading();
     RNBootSplash.hide({ fade: true });
-  }, [startSpinning, mockLoading]);
+    checkUserWithLoadingDelay();
+  }, [startSpinning, checkUserWithLoadingDelay]);
 
   useFocusEffect(
     useCallback(() => {
