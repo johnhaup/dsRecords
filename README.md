@@ -8,4 +8,6 @@
 - [Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/)
 - [React Navigation 6](https://reactnavigation.org/)
 - [React Native Audio Toolkit](https://github.com/react-native-audio-toolkit/react-native-audio-toolkit)
+- [React Native Firebase Authentication](https://rnfirebase.io/reference/auth)
+- [React Native Firebase Firestore](https://rnfirebase.io/reference/firestore)
 - [Jest Testing](https://testing-library.com/docs/react-native-testing-library/intro/)
