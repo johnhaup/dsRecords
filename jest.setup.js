@@ -29,7 +29,7 @@ jest.mock('react-native-reanimated', () => {
 
 jest.mock('@react-native-community/audio-toolkit', () => ({
   Player: () => ({
-    prepare: jest.fn,
+    prepare: (callback) => callback(),
     play: jest.fn,
     stop: jest.fn,
     pause: jest.fn,
@@ -53,14 +53,18 @@ jest.mock('@react-native-firebase/firestore', () => {
   });
 });
 
-jest.mock('@react-native-firebase/auth', () => () => ({
-  currentUser: null,
-  onAuthStateChanged: jest.fn,
-  signInWithCredential: jest.fn,
-  GoogleAuthProvider: {
+jest.mock('@react-native-firebase/auth', () => {
+  const auth = () => ({
+    currentUser: null,
+    onAuthStateChanged: jest.fn,
+    signInWithCredential: jest.fn,
+  });
+  auth.GoogleAuthProvider = {
     credential: jest.fn,
-  },
-}));
+  };
+
+  return auth;
+});
 
 jest.mock('@react-native-google-signin/google-signin', () => ({
   GoogleSignin: {
