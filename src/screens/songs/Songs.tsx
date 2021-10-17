@@ -1,32 +1,51 @@
-import firestore from '@react-native-firebase/firestore';
 import React, { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
-import Animated from 'react-native-reanimated';
-import { SCREEN_WIDTH } from '../../constants/layout';
+import {
+  FlatList,
+  ListRenderItemInfo,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { Spacer } from '../../components/primitives/Spacer';
+import { FirestoreSong } from '../../types';
+import { useSongs } from './hooks/useSongs';
 
 export const Songs = () => {
-  const fetchSongs = async () => {
-    try {
-      const snapshot = await firestore().collection('songlist').get();
-      const songs = snapshot.docs.map((doc) => doc.data());
-      console.log(songs);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { songs, fetchSongs } = useSongs();
 
   useEffect(() => {
     fetchSongs();
-  }, []);
+  }, [fetchSongs]);
+
+  const renderSong = ({ item }: ListRenderItemInfo<FirestoreSong>) => {
+    return (
+      <View
+        style={{
+          alignSelf: 'stretch',
+          padding: 16,
+          borderRadius: 8,
+          borderWidth: 1,
+        }}>
+        <Text>{item.title}</Text>
+      </View>
+    );
+  };
+
+  const renderSeparator = () => <Spacer h={8} />;
 
   return (
     <View style={styles.container}>
-      <Animated.ScrollView
-        testID={'@Songs/ScrollView'}
-        horizontal
-        pagingEnabled>
-        <View style={styles.page} />
-      </Animated.ScrollView>
+      <Spacer statusBar safeTop />
+      <FlatList
+        style={styles.listContainer}
+        testID={'@Songs/FlatList'}
+        keyExtractor={(_, i) => `song_list_item_${i}`}
+        data={songs}
+        renderItem={renderSong}
+        ItemSeparatorComponent={renderSeparator}
+        ListHeaderComponent={<Spacer h={16} />}
+        ListFooterComponent={<Spacer h={16} />}
+      />
     </View>
   );
 };
@@ -35,8 +54,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  page: {
+  listContainer: {
     flex: 1,
-    width: SCREEN_WIDTH,
+    paddingHorizontal: 8,
   },
 });
