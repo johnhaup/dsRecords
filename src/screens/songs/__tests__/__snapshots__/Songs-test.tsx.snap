@@ -8,22 +8,90 @@ exports[`Matches snapshot 1`] = `
     }
   }
 >
+  <View
+    pointerEvents="box-none"
+    style={
+      Array [
+        Object {
+          "height": NaN,
+          "width": 0,
+        },
+      ]
+    }
+  />
   <RCTScrollView
-    horizontal={true}
-    pagingEnabled={true}
-    scrollEventThrottle={0.0001}
-    style={Object {}}
-    testID="@Songs/ScrollView"
+    ItemSeparatorComponent={[Function]}
+    ListFooterComponent={
+      <Spacer
+        h={16}
+      />
+    }
+    ListHeaderComponent={
+      <Spacer
+        h={16}
+      />
+    }
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "flex": 1,
+        "paddingHorizontal": 8,
+      }
+    }
+    testID="@Songs/FlatList"
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
   >
     <View>
       <View
-        style={
-          Object {
-            "flex": 1,
-            "width": 750,
+        onLayout={[Function]}
+      >
+        <View
+          pointerEvents="box-none"
+          style={
+            Array [
+              Object {
+                "height": 16,
+                "width": 0,
+              },
+            ]
           }
-        }
-      />
+        />
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          pointerEvents="box-none"
+          style={
+            Array [
+              Object {
+                "height": 16,
+                "width": 0,
+              },
+            ]
+          }
+        />
+      </View>
     </View>
   </RCTScrollView>
 </View>

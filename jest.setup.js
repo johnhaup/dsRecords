@@ -47,11 +47,30 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
-jest.mock('@react-native-firebase/firestore', () => {
-  return () => ({
-    collection: jest.fn,
-  });
+jest.mock('@react-navigation/elements', () => {
+  return {
+    ...jest.requireActual('@react-navigation/elements'),
+    useHeaderHeight: jest.fn,
+  };
 });
+
+jest.mock('@react-native-firebase/firestore', () => () => ({
+  collection: () => {
+    const get = () =>
+      Promise.resolve({
+        docs: [
+          {
+            data: () => ({
+              storagePath: '/root/barf',
+              attribution: 'barf.com',
+              title: 'smell barf',
+            }),
+          },
+        ],
+      });
+    return { get };
+  },
+}));
 
 jest.mock('@react-native-firebase/auth', () => {
   const auth = () => ({
@@ -71,4 +90,9 @@ jest.mock('@react-native-google-signin/google-signin', () => ({
     configure: jest.fn,
     signIn: () => ({ idToken: '123' }),
   },
+}));
+
+jest.mock('react-native-safe-area-context', () => ({
+  ...jest.requireActual('react-native-safe-area-context'),
+  useSafeAreaInsets: jest.fn,
 }));
