@@ -1,26 +1,31 @@
 // https://flatuicolors.com/palette/us
 
-export type Color =
-  | 'lightGreenishBlue'
-  | 'mintLeaf'
-  | 'sourLemon'
-  | 'brightYarrow'
-  | 'fadedPoster'
-  | 'robinsEggBlue'
-  | 'firstDate'
-  | 'orangeVille'
-  | 'greenDarnerTail'
-  | 'electronBlue'
-  | 'pinkGlamour'
-  | 'chiGong'
-  | 'shyMoment'
-  | 'exodusFruit'
-  | 'pico8Pink'
-  | 'prunusAvium'
-  | 'cityLights'
-  | 'soothingBreeze'
-  | 'americanRiver'
-  | 'draculaOrchid';
+export const COLOR_PALETTE = [
+  'lightGreenishBlue',
+  'mintLeaf',
+  'sourLemon',
+  'brightYarrow',
+  'fadedPoster',
+  'robinsEggBlue',
+  'firstDate',
+  'orangeVille',
+  'greenDarnerTail',
+  'electronBlue',
+  'pinkGlamour',
+  'chiGong',
+  'shyMoment',
+  'exodusFruit',
+  'pico8Pink',
+  'prunusAvium',
+  'cityLights',
+  'soothingBreeze',
+  'americanRiver',
+  'draculaOrchid',
+] as const;
+
+// https://stackoverflow.com/a/45486495/7776799
+type ColorsTuple = typeof COLOR_PALETTE;
+export type Color = ColorsTuple[number];
 
 export const colors: { [key in Color]: string } = {
   lightGreenishBlue: '#55efc4',

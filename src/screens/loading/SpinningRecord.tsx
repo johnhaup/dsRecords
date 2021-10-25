@@ -21,7 +21,7 @@ export const SpinningRecord = ({
   const spin = useSharedValue(0);
 
   const checkUserWithLoadingDelay = useCallback(async () => {
-    const nextScreen = auth().currentUser ? 'Main' : 'Login';
+    const nextScreen = !auth().currentUser ? 'Main' : 'Login';
     setTimeout(() => {
       navigation.navigate(nextScreen);
     }, 1500);
